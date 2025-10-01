@@ -1,14 +1,17 @@
 package com.project;
 
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 
 public class Main {
     public static void main(String[] args) {
-        ConcurrentHasmap <String, Integer> compteBanc = new ConcurrentHashMap<>();
+        ConcurrentHashMap <String, Integer> compteBanc = new ConcurrentHashMap<>();
         
         ExecutorService executor = Executors.newFixedThreadPool(3);
         try { 
@@ -29,37 +32,29 @@ public class Main {
                 }
             };
 
-            
+            Callable<Integer> obtenirSaldoFinal = () -> { // T3 LLEGEIX i FINAL
+                try {
+                    TimeUnit.MILLISECONDS.sleep(200); // Que T2 termini primer
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                int saldoFinal = compteBanc.get("saldo");
+                System.out.println("Thread 3: Saldo final -> " + saldoFinal);
+                return saldoFinal;
+            };
 
+            // Enviar les tasques a l'executor
+            executor.execute(entraDades);
+            executor.execute(calculInteres);
+            Future<Integer> resultatFuture = executor.submit(obtenirSaldoFinal);
 
+            Integer resultatFinal = resultatFuture.get();
+            System.out.println("Resultat final: " + resultatFinal);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        } finally {
+            executor.shutdown(); // tanca l'executor
         }
     }
 }
