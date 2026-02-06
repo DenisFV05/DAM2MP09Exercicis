@@ -1,0 +1,153 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Europa",
+      "description": "Gastronomía europea con influencias mediterráneas y continentales",
+      "image": "europa.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Asia",
+      "description": "Sabores orientales con especias y técnicas milenarias",
+      "image": "asia.jpg"
+    },
+    {
+      "id": 3,
+      "name": "América",
+      "description": "Fusión de tradiciones indígenas y coloniales",
+      "image": "america.jpg"
+    },
+    {
+      "id": 4,
+      "name": "África",
+      "description": "Platos exóticos con especias y granos tradicionales",
+      "image": "africa.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Oceanía",
+      "description": "Mariscos frescos y sabores del Pacífico",
+      "image": "oceania.jpg"
+    }
+  ],
+  "items": [
+    {
+      "id": 1,
+      "categoryId": 1,
+      "name": "Paella Valenciana",
+      "country": "España",
+      "description": "Arroz con mariscos, pollo, judías verdes y azafrán. Plato tradicional de Valencia.",
+      "ingredients": ["Arroz", "Mariscos", "Pollo", "Azafrán", "Judías verdes", "Pimiento"],
+      "image": "paella.jpg"
+    },
+    {
+      "id": 2,
+      "categoryId": 1,
+      "name": "Pizza Margherita",
+      "country": "Italia",
+      "description": "Pizza clásica napolitana con tomate, mozzarella y albahaca fresca.",
+      "ingredients": ["Masa", "Tomate", "Mozzarella", "Albahaca", "Aceite de oliva"],
+      "image": "pizza.jpg"
+    },
+    {
+      "id": 3,
+      "categoryId": 1,
+      "name": "Croissant",
+      "country": "Francia",
+      "description": "Hojaldre con mantequilla, crujiente por fuera y tierno por dentro.",
+      "ingredients": ["Harina", "Mantequilla", "Levadura", "Leche", "Azúcar"],
+      "image": "croissant.jpg"
+    },
+    {
+      "id": 4,
+      "categoryId": 2,
+      "name": "Sushi",
+      "country": "Japón",
+      "description": "Arroz avinagrado con pescado crudo fresco y alga nori.",
+      "ingredients": ["Arroz", "Pescado crudo", "Alga nori", "Wasabi", "Jengibre"],
+      "image": "sushi.jpg"
+    },
+    {
+      "id": 5,
+      "categoryId": 2,
+      "name": "Pad Thai",
+      "country": "Tailandia",
+      "description": "Fideos de arroz salteados con gambas, tofu, cacahuetes y lima.",
+      "ingredients": ["Fideos de arroz", "Gambas", "Tofu", "Cacahuetes", "Lima", "Salsa de pescado"],
+      "image": "padthai.jpg"
+    },
+    {
+      "id": 6,
+      "categoryId": 2,
+      "name": "Dim Sum",
+      "country": "China",
+      "description": "Variedad de pequeños bocados al vapor, típicos del desayuno cantonés.",
+      "ingredients": ["Masa de arroz", "Cerdo", "Gambas", "Verduras", "Salsa de soja"],
+      "image": "dimsum.jpg"
+    },
+    {
+      "id": 7,
+      "categoryId": 3,
+      "name": "Tacos al Pastor",
+      "country": "México",
+      "description": "Tortillas de maíz con carne de cerdo marinada, piña y cilantro.",
+      "ingredients": ["Tortillas", "Cerdo", "Piña", "Cilantro", "Cebolla", "Chile"],
+      "image": "tacos.jpg"
+    },
+    {
+      "id": 8,
+      "categoryId": 3,
+      "name": "Feijoada",
+      "country": "Brasil",
+      "description": "Estofado de frijoles negros con carnes de cerdo y embutidos.",
+      "ingredients": ["Frijoles negros", "Cerdo", "Chorizo", "Tocino", "Arroz"],
+      "image": "feijoada.jpg"
+    },
+    {
+      "id": 9,
+      "categoryId": 3,
+      "name": "Ceviche",
+      "country": "Perú",
+      "description": "Pescado crudo marinado en limón con cebolla morada, cilantro y ají.",
+      "ingredients": ["Pescado blanco", "Limón", "Cebolla morada", "Cilantro", "Ají"],
+      "image": "ceviche.jpg"
+    },
+    {
+      "id": 10,
+      "categoryId": 4,
+      "name": "Tagine de Cordero",
+      "country": "Marruecos",
+      "description": "Estofado de cordero con especias, albaricoques y almendras.",
+      "ingredients": ["Cordero", "Albaricoques", "Almendras", "Canela", "Comino"],
+      "image": "tagine.jpg"
+    },
+    {
+      "id": 11,
+      "categoryId": 4,
+      "name": "Injera con Doro Wat",
+      "country": "Etiopía",
+      "description": "Pan esponjoso de teff con estofado de pollo picante.",
+      "ingredients": ["Harina de teff", "Pollo", "Berbere", "Cebolla", "Mantequilla de especias"],
+      "image": "injera.jpg"
+    },
+    {
+      "id": 12,
+      "categoryId": 5,
+      "name": "Meat Pie",
+      "country": "Australia",
+      "description": "Empanada de carne picada con salsa gravy, muy popular en Australia.",
+      "ingredients": ["Masa quebrada", "Carne picada", "Cebolla", "Salsa gravy", "Tomate"],
+      "image": "meatpie.jpg"
+    },
+    {
+      "id": 13,
+      "categoryId": 5,
+      "name": "Hangi",
+      "country": "Nueva Zelanda",
+      "description": "Cocción tradicional maorí bajo tierra con carnes y vegetales.",
+      "ingredients": ["Cordero", "Cerdo", "Patatas", "Kumara", "Col"],
+      "image": "hangi.jpg"
+    }
+  ]
+}
