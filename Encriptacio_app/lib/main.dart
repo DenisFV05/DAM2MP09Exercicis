@@ -145,9 +145,11 @@ class _SeccioAccioState extends State<SeccioAccio> {
     }
   }
 
+  // CORRECCIÓN 1: Orden de parámetros (módulo, exponente)
   rsa.RSAPublicKey _parseOpenSSHPublicKey(String content) {
     final keyData = base64.decode(content.split(' ')[1]);
     int offset = 0;
+    
     BigInt readBI() {
       final len = (keyData[offset] << 24) | (keyData[offset+1] << 16) | (keyData[offset+2] << 8) | keyData[offset+3];
       offset += 4;
@@ -157,8 +159,11 @@ class _SeccioAccioState extends State<SeccioAccio> {
       for (var x in b) r = (r << 8) | BigInt.from(x);
       return r;
     }
+    
     offset += 11;
-    return rsa.RSAPublicKey(readBI(), readBI());
+    final exponent = readBI();
+    final modulus = readBI();
+    return rsa.RSAPublicKey(modulus, exponent);
   }
 
   void executar() async {
@@ -180,16 +185,35 @@ class _SeccioAccioState extends State<SeccioAccio> {
         File('$arxiuOrigenPath.enc').writeAsBytesSync(Uint8List.fromList(output));
         mostrarMsg('✅ Arxiu protegit amb èxit', Colors.green);
       } else {
+        // CORRECCIÓN 2: Validación de rangos y manejo de errores
         final encriptador = enc.Encrypter(enc.RSA(privateKey: parseKey(clauPath, false)));
         final bytes = File(arxiuOrigenPath).readAsBytesSync();
         final finalBytes = <int>[];
         int offset = 0;
+        
         while (offset < bytes.length) {
+          if (offset + 1 >= bytes.length) {
+            break; 
+          }
+          
           final len = (bytes[offset] << 8) | bytes[offset + 1];
           offset += 2;
-          finalBytes.addAll(encriptador.decryptBytes(enc.Encrypted(Uint8List.fromList(bytes.sublist(offset, offset + len)))));
+          
+          if (offset + len > bytes.length) {
+            throw Exception('El fitxer està corrupte o incomplet (fallada de longitud).');
+          }
+          
+          try {
+            final chunk = bytes.sublist(offset, offset + len);
+            final decChunk = encriptador.decryptBytes(enc.Encrypted(Uint8List.fromList(chunk)));
+            finalBytes.addAll(decChunk);
+          } catch (e) {
+            throw Exception('Clau privada incorrecta o bloc danyat.');
+          }
+          
           offset += len;
         }
+        
         final desti = arxiuDestiPath.isEmpty ? '$arxiuOrigenPath.dec' : arxiuDestiPath;
         File(desti).writeAsBytesSync(Uint8List.fromList(finalBytes));
         mostrarMsg('✅ Arxiu recuperat amb èxit', Colors.green);
